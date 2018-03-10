@@ -7,8 +7,30 @@
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <button ion-button (click)="login('facebook')" *ngIf=!provider.loggedIn>
+    <ion-icon name="logo-facebook"></ion-icon>
+    &nbsp;login With Facebook
+  </button>
+  <button ion-button (click)="login('google')" *ngIf=!provider.loggedIn>
+    <ion-icon name="logo-google"></ion-icon>
+     &nbsp;login With Google
+  </button>
+
+  <ion-card *ngIf=provider.loggedIn>
+    <img src="{{ provider.profilePicture}}"/>
+    <ion-card-content>
+      <ion-card-title>
+        {{ provider.name }}
+        
+        </ion-card-title>
+      <p style="text-align: center;">
+        {{ provider.email}}
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+
+  <button ion-button (click)="logout()" *ngIf="provider.loggedIn  ">
+    Logout
+  </button>
 </ion-content>
